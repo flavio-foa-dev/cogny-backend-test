@@ -1,15 +1,17 @@
 const axios = require('axios');
-const dotenv = require('dotenv').config();
-
+require('dotenv').config();
 const apiAdrees = process.env.ENDPOINT_API;
 
 async function getData() {
   try{
-    const data = await axios.get(apiAdrees);
-    const dataPase = data.data;
-    console.log(dataPase);
+    const {data} = await axios.get(apiAdrees);
+    return data["data"];
   } catch (error) {
     console.error("message:", error.message);
   }
 }
-getData();
+getData()
+module.exports = {
+  getData,
+}
+
